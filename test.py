@@ -17,17 +17,12 @@ DENSITY_RADIUS = 5.0  # Radius for density evaluation
 ARRIVAL_THRESHOLD = 1.0  # Distance in meters to consider target reached
 MAX_ITERATIONS = 50  # Maximum number of iterations before stopping
 INTERFACE_DIR = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "interface"))
-JULIA_PATH = "julia --project=."  # Path to Julia executable with project environment
 
 # Add the airsim directory to the Python path
 sys.path.append(path.join(path.dirname(path.abspath(__file__)), 'airsim'))
 
-# Import the scanner with the correct filename
-try:
-    from Sensory_Input_Processing import EnvironmentScanner
-except ImportError:
-    # Try with the original filename if renamed file not found
-    from airsim.EnvironmentScanner import EnvironmentScanner
+# Import the scanner from the airsim directory added to sys.path above
+from Sensory_Input_Processing import EnvironmentScanner
 
 
 class DroneController:

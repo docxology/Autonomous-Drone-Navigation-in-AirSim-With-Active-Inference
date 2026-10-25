@@ -1,8 +1,6 @@
 import airsim
 import numpy as np
-import time
 from math import pi
-import msgpackrpc
 from sklearn.cluster import DBSCAN
 from collections import defaultdict
 

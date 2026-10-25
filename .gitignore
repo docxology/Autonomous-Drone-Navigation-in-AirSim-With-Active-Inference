@@ -1,0 +1,6 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Runtime inter-process JSON exchange directory (created by test.py / Julia scripts)
+interface/

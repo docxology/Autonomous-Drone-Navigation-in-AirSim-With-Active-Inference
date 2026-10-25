@@ -12,9 +12,10 @@ This project implements autonomous drone navigation in the AirSim simulator usin
 - `airsim/` - Python interface to AirSim simulator
   - `Sensory_Input_Processing.py` - Processing sensor data from AirSim
   - `settings.json` - AirSim configuration
-- `interface/` - JSON files for inter-process communication
+- `interface/` - JSON files for inter-process communication (created at runtime by the scripts, not tracked)
 - `run_inference.jl` - Entry point for belief state inference
 - `run_planning.jl` - Entry point for action planning
+- `rebuild.jl` - Helper that develops `actinf/` into the root project and instantiates it
 - `test.py` - Python controller for simulation execution
 
 ## Active Inference Framework
@@ -71,22 +72,32 @@ Action selection is based on minimizing Expected Free Energy (EFE), which balanc
 
 ## Requirements
 
-- Julia 1.7+
-- Python 3.7+
+- Julia 1.10+
+- Python 3.8+
 - AirSim simulator
-- RxInfer.jl, PyCall.jl, and other dependencies
+- Julia packages (declared in `Project.toml`): RxInfer.jl, JSON.jl, StaticArrays.jl
+- Python packages: `airsim`, `numpy`, `scikit-learn`
 
 ## Setup
 
-1. Install AirSim following the [official documentation](https://microsoft.github.io/AirSim/build_windows/)
-2. Install Julia dependencies:
-```julia
-using Pkg
-Pkg.add(["PyCall", "RxInfer", "Images", "StaticArrays", "LinearAlgebra", "JSON"])
+1. Install AirSim following the [official documentation](https://microsoft.github.io/AirSim/)
+2. Install the Python packages:
 ```
-3. Configure AirSim settings.json for your simulation environment
+pip install airsim numpy scikit-learn
+```
+3. Install the Julia dependencies from the repository root (this also develops the local `actinf/` package):
+```
+julia --project=. -e 'using Pkg; Pkg.develop(path="actinf"); Pkg.instantiate()'
+```
+   Alternatively, run the helper script, which performs the same steps and verifies the package loads:
+```
+julia rebuild.jl
+```
+4. Configure AirSim settings.json for your simulation environment
 
 ## Running the System
+
+Run the commands from the repository root; `julia` must be on `PATH` because `test.py` invokes it as a subprocess.
 
 1. Start AirSim simulator
 2. Run the Python controller:
@@ -99,6 +110,12 @@ This will:
 - Process sensory observations
 - Call Julia for inference and planning
 - Execute actions in the simulation
+
+The Julia stages can also be run on their own; they exchange JSON through `interface/`, so `interface/obs_input.json` must exist (written by `test.py`) before running inference:
+```
+julia --project=. run_inference.jl
+julia --project=. run_planning.jl
+```
 
 ## Preference Model
 
