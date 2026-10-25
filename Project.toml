@@ -6,7 +6,7 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 actinf = "d0498c39-f064-4652-9d32-417a3552f8c1"
 
 [sources]
-actinf = {path = "/Volumes/blue/gitvault/Username/docxology/Public/Autonomous-Drone-Navigation-in-AirSim-With-Active-Inference/actinf"}
+actinf = {path = "actinf"}
 
 [compat]
 JSON = "0.21"

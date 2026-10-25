@@ -4,7 +4,7 @@
 import Pkg
 println("Activating project environment...")
 Pkg.activate(@__DIR__)
-Pkg.develop(path=joinpath(@__DIR__, "actinf"))
+Pkg.develop(path="actinf")
 println("Installing dependencies...")
 Pkg.instantiate()
 

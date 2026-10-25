@@ -4,7 +4,7 @@
 if Base.active_project() != abspath(joinpath(@__DIR__, "Project.toml"))
     import Pkg
     Pkg.activate(@__DIR__)
-    Pkg.develop(path=joinpath(@__DIR__, "actinf"))
+    Pkg.develop(path="actinf")
 end
 
 # Precompile necessary packages upfront

@@ -2,7 +2,7 @@
 
 julia_version = "1.13.2"
 manifest_format = "2.1"
-project_hash = "907a834e17ed2fcd3813f0b554befc1c288b9aea"
+project_hash = "7b49390c0c361eee10d807bb6191b0b8704f034a"
 
 [[deps.ADTypes]]
 deps = ["PrecompileTools"]
@@ -1361,7 +1361,7 @@ version = "1.5.7+1"
 
 [[deps.actinf]]
 deps = ["JSON", "LinearAlgebra", "RxInfer", "StaticArrays"]
-path = "/Volumes/blue/gitvault/Username/docxology/Public/Autonomous-Drone-Navigation-in-AirSim-With-Active-Inference/actinf"
+path = "actinf"
 uuid = "d0498c39-f064-4652-9d32-417a3552f8c1"
 version = "0.1.0"
 
